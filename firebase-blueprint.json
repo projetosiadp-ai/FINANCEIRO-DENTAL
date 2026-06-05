@@ -1,0 +1,134 @@
+{
+  "entities": {
+    "SimulatedUser": {
+      "title": "SimulatedUser",
+      "description": "Simulated dental application user",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "Abas_Liberadas": { "type": "array" }
+      },
+      "required": ["id", "email", "role"]
+    },
+    "MigracaoElos": {
+      "title": "MigracaoElos",
+      "description": "Boleto to Elos Card migration records",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "codigoCliente": { "type": "string" },
+        "empresaAnterior": { "type": "string" },
+        "valorAnterior": { "type": "number" },
+        "empresaAtual": { "type": "string" },
+        "valorAtual": { "type": "number" },
+        "proximaParcela": { "type": "string" },
+        "premiacao": { "type": "string" },
+        "status": { "type": "string" },
+        "dataCriacao": { "type": "string" },
+        "dataConclusao": { "type": "string" },
+        "modificadoPor": { "type": "string" }
+      },
+      "required": ["id", "codigoCliente", "status"]
+    },
+    "TrocaCartao": {
+      "title": "TrocaCartao",
+      "description": "Card exchange records for active customer contracts",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "codigoCliente": { "type": "string" },
+        "dataVencimentoParcela": { "type": "string" },
+        "status": { "type": "string" },
+        "dataCriacao": { "type": "string" },
+        "dataConclusao": { "type": "string" },
+        "modificadoPor": { "type": "string" }
+      },
+      "required": ["id", "codigoCliente", "status"]
+    },
+    "CancelamentoBoleto": {
+      "title": "CancelamentoBoleto",
+      "description": "Recurring card to boleto cancellation log entries",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "codigoCliente": { "type": "string" },
+        "valorAnterior": { "type": "number" },
+        "empresaAnterior": { "type": "string" },
+        "dataAlteracao": { "type": "string" },
+        "motivoCancelamento": { "type": "string" },
+        "migracaoPara": { "type": "string" },
+        "valorAtual": { "type": "number" },
+        "proximoVencimento": { "type": "string" },
+        "status": { "type": "string" },
+        "dataCriacao": { "type": "string" },
+        "dataConclusao": { "type": "string" },
+        "modificadoPor": { "type": "string" }
+      },
+      "required": ["id", "codigoCliente", "status"]
+    },
+    "ControlePJ": {
+      "title": "ControlePJ",
+      "description": "Relational corporate accounts active payment control rules",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "codigoCliente": { "type": "string" },
+        "dataContratacao": { "type": "string" },
+        "formaPagamentoP1": { "type": "string" },
+        "dataProximaParcela": { "type": "string" },
+        "status": { "type": "string" },
+        "dataCriacao": { "type": "string" },
+        "dataConclusao": { "type": "string" },
+        "modificadoPor": { "type": "string" },
+        "historicoModificacoes": { "type": "array" }
+      },
+      "required": ["id", "codigoCliente", "status"]
+    },
+    "AppNotification": {
+      "title": "AppNotification",
+      "description": "Finance controller notifications stream",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tipo": { "type": "string" },
+        "mensagem": { "type": "string" },
+        "lida": { "type": "boolean" },
+        "data": { "type": "string" },
+        "referenciaId": { "type": "string" },
+        "aba": { "type": "string" }
+      },
+      "required": ["id", "mensagem", "lida"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "SimulatedUser",
+      "description": "Store users and dashboard access roles"
+    },
+    "/migracoes/{migracaoId}": {
+      "schema": "MigracaoElos",
+      "description": "Card migrations logs for recurring payment active setup"
+    },
+    "/trocas/{trocaId}": {
+      "schema": "TrocaCartao",
+      "description": "Lote card swap events tracker"
+    },
+    "/cancelamentos/{cancelamentoId}": {
+      "schema": "CancelamentoBoleto",
+      "description": "Historical recurrences converted to boleto"
+    },
+    "/controle_pj/{pjId}": {
+      "schema": "ControlePJ",
+      "description": "PJ client payments schedules and verification logs"
+    },
+    "/notifications/{notificationId}": {
+      "schema": "AppNotification",
+      "description": "Admin alerts inbox system"
+    }
+  }
+}

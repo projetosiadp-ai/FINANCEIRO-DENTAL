@@ -1,0 +1,8 @@
+{
+  "name": "DentalPlus Gestão Financeira",
+  "description": "Painel de controle financeiro interno da DentalPlus para gestão de migrações de pagamento, troca de cartões, cancelamento recorrente e controle PJ com níveis de acesso.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
